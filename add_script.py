@@ -1,7 +1,8 @@
 import os
 import json
+import chardet
 from typing import List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from bson import ObjectId
 from pymongo import MongoClient
 
@@ -11,9 +12,9 @@ class PyObjectId(ObjectId):
         yield cls.validate
 
     @classmethod
-    def validate(cls, v):
+    def validate(cls, v, *args):
         if not ObjectId.is_valid(v):
-            raise ValueError(f'Invalid ObjectId with value: {v}')
+            raise ValueError(f'Invalid ObjectId with value: {v} from cls {cls}')
         return ObjectId(v)
 
     @classmethod
@@ -35,16 +36,42 @@ class DocumentModel(BaseModel):
         json_encoders = {ObjectId: str}
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['mydatabase']
-collection = db['mycollection']
+mongo_url = "mongodb+srv://finquest:123@finquest.jupe3n1.mongodb.net/?retryWrites=true&w=majority&appName=finquest"
+client = MongoClient(mongo_url)
+db = client['finquest']
+collection = db['documents']
+
+def detect_encoding(file_path: str) -> str:
+    with open(file_path, 'rb') as file:
+        raw_data = file.read(10000)  # Read the first 10 KB
+        result = chardet.detect(raw_data)
+        return result['encoding']
+    
+def read_file_with_encoding(file_path: str) -> str:
+    encodings = ['utf-8', 'latin-1', 'cp1252']
+    for encoding in encodings:
+        try:
+            with open(file_path, 'r', encoding=encoding) as file:
+                return file.read()
+        except UnicodeDecodeError:
+            continue
+    raise ValueError(f"Unable to read file with supported encodings: {file_path}")
+
 
 def load_json_files(directory: str) -> List[dict]:
     json_files = [f for f in os.listdir(directory) if f.endswith('.json')]
     data = []
     for json_file in json_files:
-        with open(os.path.join(directory, json_file), 'r') as file:
-            data.append(json.load(file))
+        file_path = os.path.join(directory, json_file)
+        try:
+            file_content = read_file_with_encoding(file_path)
+            json_data = json.loads(file_content)
+            if 'entries' in json_data:
+                data.extend(json_data['entries'])
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON file {file_path}: {e}")
+        except Exception as e:
+            print(f"Error processing file {file_path}: {e}")
     return data
 
 def insert_documents(directory: str):
@@ -58,7 +85,8 @@ def insert_documents(directory: str):
         except Exception as e:
             print(f"Failed to insert document: {e}")
 
-# path to data sa repo mo
-json_directory = 'path/to/your/json/files'
+
+json_directory = json_directory = r"C:\Users\elexy\OneDrive\Desktop\test\data"
+
 
 insert_documents(json_directory)
