@@ -74,36 +74,35 @@ def load_json_files(directory: str) -> List[dict]:
     return data
 
 def insert_or_update_document(doc_data: dict):
-    author = doc_data.get('author')
-    if not author:
-        print("Author field is required.")
+    title = doc_data.get('title')
+    if not title:
+        print("Title field is required.")
         return
     
-    existing_doc = collection.find_one({"author": author})
+    existing_doc = collection.find_one({"title": title})
     current_time = datetime.now().isoformat()
 
     if existing_doc:
         # Update existing document
         update_data = {
-            "title": doc_data.get('title'),
             "content": doc_data.get('content'),
             "updated_at": current_time,
             "embedding": doc_data.get('embedding', [])
         }
-        collection.update_one({"author": author}, {"$set": update_data})
-        print(f"Document with author '{author}' updated.")
+        collection.update_one({"title": title}, {"$set": update_data})
+        print(f"Document with title '{title}' updated.")
     else:
         # Insert new document
         new_doc = {
-            "title": doc_data.get('title'),
+            "title": title,
             "content": doc_data.get('content'),
-            "author": author,
+            "author": doc_data.get('author'),
             "created_at": current_time,
             "updated_at": current_time,
             "embedding": doc_data.get('embedding', [])
         }
         collection.insert_one(new_doc)
-        print(f"New document with author '{author}' inserted.")
+        print(f"New document with title '{title}' inserted.")
 
 def insert_documents(directory: str):
     documents = load_json_files(directory)
