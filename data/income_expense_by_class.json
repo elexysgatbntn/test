@@ -1,0 +1,33 @@
+{
+    "entries": [
+        {
+            "title": "Low",
+            "content": "The low-income class includes two main clusters. The 'Poor' cluster consists of families with a family income of less than ₱9,100. The 'Low Income' cluster includes families with a family income ranging from ₱9,100 to ₱18,200.",
+            "author": "https://digido.ph/articles/middle-class-philippines"
+        },
+        {
+            "title": "Middle",
+            "content": "The middle-income class is divided into three clusters. The 'Lower Middle' cluster includes families with a family income between ₱18,200 and ₱36,400. The 'Middle Middle' cluster consists of families with a family income ranging from ₱36,400 to ₱63,700. Finally, the 'Upper Middle' cluster comprises families with a family income between ₱63,700 and ₱109,200.",
+            "author": "https://digido.ph/articles/middle-class-philippines"
+        },
+        {
+            "title": "High",
+            "content": "The high-income class includes two clusters. The 'Upper' cluster consists of families with a family income between ₱109,200 and ₱182,000. The 'Rich' cluster includes families with a family income above ₱182,000.",
+            "author": "https://digido.ph/articles/middle-class-philippines"
+        },
+        {
+            "title": "Low Income Distribution - Example 1",
+            "content": "The low-income class includes two main clusters. The 'Poor' cluster consists of families with a family income of less than ₱9,100. The 'Low Income' cluster includes families with a family income ranging from ₱9,100 to ₱18,200. For the distribution of expenses, families in this category allocate their income as follows: 53.40% for Food and Groceries, 10.70% for Rent or Housing, 7.10% for Transportation and Communication, 7.70% for Light and Water, 0.50% for Government Taxes, 2.50% for Educational Expenses, 6.50% for Electricity Expenses, 2.00% for Health Expenses, 3.90% for Personal Care, and 16.40% for Miscellaneous Expenses.",
+            "author": "https://digido.ph/articles/middle-class-philippines"
+        },
+        {
+            "title": "Low Income Distribution - Example 2",
+            "content": "The low-income class includes two main clusters. The 'Poor' cluster consists of families with a family income of less than ₱9,100. The 'Low Income' cluster includes families with a family income ranging from ₱9,100 to ₱18,200. For the distribution of expenses, families in this category allocate their income as follows: 41.30% for Food and Groceries, 113.90% for Rent or Housing, 6.00% for Transportation and Communication, 7.70% for Light and Water, 2.40% for Government Taxes, 4.10% for Educational Expenses, 6.60% for Electricity Expenses, 3.80% for Health Expenses, 3.60% for Personal Care, and 21.90% for Miscellaneous Expenses.",
+            "author": "https://digido.ph/articles/middle-class-philippines"
+        },
+        {
+            "title": "High Income Distribution",
+            "content": "The high-income class includes two clusters. The 'Upper' cluster consists of families with a family income between ₱109,200 and ₱182,000. The 'Rich' cluster includes families with a family income above ₱182,000. For the distribution of expenses, families in this category allocate their income as follows: 21.30% for Food and Groceries, 16.60% for Rent or Housing, 4.70% for Transportation and Communication, 5.60% for Light and Water, 5.40"
+        }
+    ]
+  }
